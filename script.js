@@ -1,5 +1,5 @@
 function u(t) {
-	l=c.width+=i=0;h=400;for(;++i<200;)for(j=a=(t+C(i))%2;j++<50;)x.fillRect(l*C(i*i)+~~a*(w=a*h-h)*C(j),(~~a?h:a*h)*(C(i)*C(i)+2)+w*S(j)/4,3,3)
+	for(c.width|=i=9,x.translate(960,540),x.rotate(S(t)*3);i--;x.fillRect((F=e=>--e*q*(D>1?D:1)-q/2)(i%3),F(i/3|0),q,q))D=t%2*6-i,q=400/(t%2-3)
 	// your code here
 }
 
@@ -14,11 +14,14 @@ var FRAME_INTERVAL = 16;
 
 function start() {
 	startFrame = Date.now() - lastFrame;
-	intervalId = setInterval(function() {
-		lastFrame = Date.now() - startFrame;
-		u(lastFrame / SPEED);
-	}, FRAME_INTERVAL);
+	draw();
+	intervalId = setInterval(draw, FRAME_INTERVAL);
 	updateButtons();
+}
+
+function draw() {
+	lastFrame = Date.now() - startFrame;
+	u(lastFrame / SPEED);
 }
 
 function pause() {
