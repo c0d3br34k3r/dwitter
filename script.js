@@ -1,6 +1,25 @@
 function u(t) {
-	for(c.width|=i=9,x.translate(960,540),x.rotate(S(t)*3);i--;x.fillRect((F=e=>--e*q*(D>1?D:1)-q/2)(i%3),F(i/3|0),q,q))D=t%2*6-i,q=400/(t%2-3)
-	// your code here
+	x.clearRect(0, 0, c.width, c.height);
+
+	
+	
+	var sz = 120;
+	var q = 0
+	for (var j = 0; j < c.height; j += sz) {
+		for (var i = 0; i < c.width; i += sz) {
+			var h = 255 * (.5 + .5 * sin(2 * Math.PI * ((t * 25 + q++) / (c.width * c.height / sz / sz))));
+			x.fillStyle = color(0, h, 255 - h);
+			x.fillRect(i, j, sz, sz);
+		}
+	}
+
+	// var r = c.height / 2;
+	// for (var i = 0; i < 2000 * PI; i++) {
+		// x.fillRect(c.width  / 2 + r * cos((t + cos(i / 10) * 3)), 
+				   // c.height / 2 + r * sin((t + sin(i / 10) * 3)), 
+				// 20, 
+				// 20);
+	// }
 }
 
 var startFrame;
@@ -65,7 +84,7 @@ function frame(increment) {
 }
 
 function setup() {
-	c = document.getElementById('c');
+	c = document.getElementById('canvas');
 	x = c.getContext('2d');
 	start();
 }
@@ -77,13 +96,18 @@ function updateButtons() {
 	}
 }
 
+function color(r, g, b, a) {
+	a = a === undefined ? 1 : a;
+	return 'rgba(' + (r | 0) + ',' + (g | 0) + ',' + (b | 0) + ',' + a + ')';
+}
+
 var c;
 var x;
 var S = Math.sin;
 var C = Math.cos;
 var T = Math.tan;
+var R = color;
 
-function R(r, g, b, a) {
-	a = a === undefined ? 1 : a;
-	return 'rgba(' + (r | 0) + ',' + (g | 0) + ',' + (b | 0) + ',' + a + ')';
-}
+var sin = Math.sin;
+var cos = Math.cos;
+var tan = Math.tan;
